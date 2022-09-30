@@ -30,9 +30,7 @@ export const JournalPage = () => {
         ? <NothingSelectedView/> 
         : <NoteView/>
       }
-      {/* <NothingSelectedView/> */}
-      {/* <NoteView/> */}
-
+      
       <IconButton
       onClick={ onClickNewNote }
       size='large'
