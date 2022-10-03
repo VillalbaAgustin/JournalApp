@@ -1,11 +1,11 @@
-import {Drawer,Box,Toolbar,Typography,Divider,List,ListItem,ListItemButton,ListItemIcon,Grid,ListItemText,Avatar} from '@mui/material';
+import {Drawer,Box,Toolbar,Typography,Divider,List,Avatar} from '@mui/material';
 import { useSelector } from 'react-redux';
 import { SideBarItem } from './SideBarItem';
 
 export const SideBar = ({ drawerWidth }) => {
   const { displayName, photoURL } = useSelector((state) => state.auth);
   const { notes } = useSelector((state) => state.journal);
-  // console.log(displayName);
+  console.log(photoURL);
 
   return (
     <Box
