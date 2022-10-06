@@ -1,8 +1,8 @@
 import { async } from '@firebase/util';
-import { collection, doc, setDoc } from 'firebase/firestore/lite';
+import { collection, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
 import { FirebaseDB } from '../../firebase/config';
-import { loadNotes } from '../../helpers';
-import {addNewEmptyNote,setActiveNote,savingNewNote,setNote, setSaving, updateNote} from './journalSlice';
+import { fileUpload, loadNotes } from '../../helpers';
+import { addNewEmptyNote, setActiveNote, savingNewNote, setNote, setSaving, updateNote, setPhotosToActiveNote, deleteNoteById } from './journalSlice';
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
@@ -40,20 +40,50 @@ export const startLoadingNote = () => {
 
 export const startSaveNote = () => {
   return async (dispatch, getState) => {
-
     dispatch(setSaving());
 
     const { uid } = getState().auth;
     const { active: activeNote } = getState().journal;
 
-    const noteToFireStore = {...activeNote};
+    const noteToFireStore = { ...activeNote };
     delete noteToFireStore.id;
 
     // console.log(noteToFireStore);
 
-    const docRef = doc( FirebaseDB, `${uid}/journal/notes/${ activeNote.id}`);
-    await setDoc( docRef, noteToFireStore, {merge: true});
+    const docRef = doc(FirebaseDB, `${uid}/journal/notes/${activeNote.id}`);
+    await setDoc(docRef, noteToFireStore, { merge: true });
 
-    dispatch(updateNote(activeNote))
+    dispatch(updateNote(activeNote));
+  };
+};
+
+export const startUploadingFiles = ( files = [] ) => {
+  return async (dispatch) => {
+    dispatch(setSaving);
+    // const resp = await fileUpload(files[0]);
+    const fileUploadPromises = [];
+
+    for (const file of files) {
+      fileUploadPromises.push(fileUpload( file ))
+    }
+
+    const photoUrls = await Promise.all( fileUploadPromises );
+    console.log(photoUrls);
+    dispatch( setPhotosToActiveNote( photoUrls ));
+  }
+};
+
+export const startDeletingNote = () => {
+  return async (dispatch, getState) => {
+    dispatch(setSaving);
+
+    const {uid} = getState().auth;
+    const {active: activeNote} = getState().journal;
+
+    const docRef = doc(FirebaseDB, `${uid}/journal/notes/${activeNote.id}`);
+    const resp = await deleteDoc(docRef);   //borra de Firebase
+    console.log(docRef);
+    dispatch(deleteNoteById(activeNote.id))
+
   }
 }
