@@ -21,7 +21,7 @@ export const SideBarItem = ({ id, title, body, date, imageUrls = [] }) => {
   }
 
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding sx={{backgroundColor:'third.main', mb:1}}>
       <ListItemButton onClick={onActiveNote}>
         <ListItemIcon>
           {

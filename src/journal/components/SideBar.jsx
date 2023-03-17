@@ -20,16 +20,16 @@ export const SideBar = ({ drawerWidth }) => {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{backgroundColor:'secondary.main'}}>
           <Avatar src={photoURL} alt="photoPerfil" />
-          <Typography variant="h6" noWrap ml={1} /* component={div} */>
+          <Typography variant="h6" noWrap ml={1} color='white'/* component={div} */>
             {displayName}
           </Typography>
         </Toolbar>
 
         <Divider />
 
-        <List>
+        <List >
           {notes.map((note) => (
             <SideBarItem key={note.id} {...note}/>
           ))}
