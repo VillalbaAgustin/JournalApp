@@ -20,7 +20,7 @@ export const SideBar = ({ drawerWidth }) => {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
       >
-        <Toolbar sx={{backgroundColor:'secondary.main'}}>
+        <Toolbar sx={{backgroundColor:'primary.main'}}>
           <Avatar src={photoURL} alt="photoPerfil" />
           <Typography variant="h6" noWrap ml={1} color='white'/* component={div} */>
             {displayName}
