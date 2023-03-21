@@ -27,7 +27,7 @@ export const SideBar = ({ drawerWidth }) => {
           </Typography>
         </Toolbar>
 
-        <Divider />
+        {/* <Divider />  */}
 
         <List >
           {notes.map((note) => (

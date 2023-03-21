@@ -15,7 +15,7 @@ export const NothingSelectedView = () => {
         <StarOutline sx={{fontSize: 100, color: 'white'}}/>
       </Grid>
       <Grid item xs={12}>
-        <Typography color='white' variant="h5">Select or Create a Journal</Typography>
+        <Typography color='white' variant="h5">Select or create a Journal</Typography>
       </Grid>
 
     </Grid>

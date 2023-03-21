@@ -95,7 +95,7 @@ export const NoteView = () => {
         disabled= {isSaving}
         >
           <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
-          Guardar
+          Save
         </Button>
       </Grid>
 
@@ -104,8 +104,8 @@ export const NoteView = () => {
           type="text"
           variant="filled"
           fullWidth
-          placeholder="Ingrese un título"
-          label="Título"
+          placeholder="Insert a title"
+          label="Title"
           sx={{ border: 'none', mb: 1 }}
           name="title"
           value={title}
@@ -117,7 +117,7 @@ export const NoteView = () => {
           variant="filled"
           fullWidth
           multiline
-          label="¿Que sucedio en el día de hoy?"
+          label="What happened today?"
           sx={{ border: 'none', mb: 1 }}
           minRows={5}
           name="body"
@@ -135,7 +135,7 @@ export const NoteView = () => {
         color= "error"
         >
           <DeleteOutline/>
-          Borrar
+          Delete
         </Button>
       </Grid>
 

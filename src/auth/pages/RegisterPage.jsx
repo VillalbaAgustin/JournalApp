@@ -14,9 +14,9 @@ const formData = {
 }
 
 const formValidations = {
-  email: [(value) => value.includes('@'), 'El correo debe de tener un @'],
-  password: [(value) => value.length >= 6, 'El password debe tener más de 6 letras'],
-  displayName: [(value) => value.length >= 1, 'El nombre es obligario'],
+  email: [(value) => value.includes('@'), 'The email must include @'],
+  password: [(value) => value.length >= 6, 'Password must include at least 6 letters'],
+  displayName: [(value) => value.length >= 1, 'Full name is required'],
 }
 
 
