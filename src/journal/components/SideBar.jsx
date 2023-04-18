@@ -5,7 +5,6 @@ import { SideBarItem } from './SideBarItem';
 export const SideBar = ({ drawerWidth }) => {
   const { displayName, photoURL } = useSelector((state) => state.auth);
   const { notes } = useSelector((state) => state.journal);
-  // console.log(photoURL);
 
   return (
     <Box

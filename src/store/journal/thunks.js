@@ -20,7 +20,6 @@ export const startNewNote = () => {
     const setDocResp = await setDoc(newDoc, newNote);
 
     newNote.id = newDoc.id;
-    // console.log({newDoc,setDocResp});
     dispatch(addNewEmptyNote(newNote));
     dispatch(setActiveNote(newNote));
   };
@@ -29,7 +28,6 @@ export const startNewNote = () => {
 export const startLoadingNote = () => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
-    // console.log({uid});
 
     if (!uid) throw new Error('El uid de usuario no existe');
     const resp = await loadNotes(uid);
@@ -48,7 +46,6 @@ export const startSaveNote = () => {
     const noteToFireStore = { ...activeNote };
     delete noteToFireStore.id;
 
-    // console.log(noteToFireStore);
 
     const docRef = doc(FirebaseDB, `${uid}/journal/notes/${activeNote.id}`);
     await setDoc(docRef, noteToFireStore, { merge: true });
@@ -68,7 +65,6 @@ export const startUploadingFiles = ( files = [] ) => {
     }
 
     const photoUrls = await Promise.all( fileUploadPromises );
-    console.log(photoUrls);
     dispatch( setPhotosToActiveNote( photoUrls ));
   }
 };
@@ -82,7 +78,6 @@ export const startDeletingNote = () => {
 
     const docRef = doc(FirebaseDB, `${uid}/journal/notes/${activeNote.id}`);
     const resp = await deleteDoc(docRef);   //borra de Firebase
-    console.log(docRef);
     dispatch(deleteNoteById(activeNote.id))
 
   }
